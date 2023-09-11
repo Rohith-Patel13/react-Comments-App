@@ -1,0 +1,143 @@
+/* Write your CSS here */
+* {
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+.bg {
+  border: 1px solid gray;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.img {
+  height: 240px;
+  width: 400px;
+}
+
+.nameTextInput {
+  width: 283px;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.firstCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.mainHead {
+  text-align: left;
+}
+
+.commentsMainContentContainer {
+  margin-right: 2rem;
+}
+
+.nameTextInput {
+  margin-bottom: 1rem;
+}
+.btnEl {
+  color: white;
+  background-color: #0284c7;
+  border-radius: 4px;
+  padding: 4px 8px;
+  border-color: transparent;
+  cursor: pointer;
+}
+.paraBelowImage {
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.horizontalLine {
+  background-color: #cbd2d9;
+  height: 2px;
+}
+
+.countBox {
+  background-color: #0284c7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  color: white;
+  border-radius: 2px;
+  margin-right: 12px;
+}
+
+.numContainer {
+  display: flex;
+  align-items: center;
+}
+
+.ulContainer {
+  list-style: none;
+}
+
+.profileSymbol {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-right: 12px;
+}
+
+.time {
+  color: #94a3b8;
+}
+
+.upperBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.lowerBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.likesContainer {
+  display: flex;
+  align-items: center;
+}
+
+.likeImage {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .firstCard {
+    flex-direction: column;
+  }
+  .img {
+    order: -1;
+    height: 230px;
+    width: 300px;
+  }
+  .inputContainer {
+    margin-bottom: 1rem;
+  }
+  .profileSymbol {
+    font-size: 10px;
+  }
+}
