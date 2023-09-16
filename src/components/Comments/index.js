@@ -17,7 +17,46 @@ const initialContainerBackgroundClassNames = [
 // Write your code here
 
 class Comments extends Component {
+  state = {
+    commenterName: '',
+    commentPara: '',
+    commentCount: 0,
+    btnClicked: false,
+  }
+
+  inputName = event => {
+    const enteredValue = event.target.value
+
+    this.setState({commenterName: enteredValue})
+  }
+
+  textPara = event => {
+    const enteredValue = event.target.value
+
+    this.setState({commentPara: enteredValue})
+  }
+
+  buttonClicked = () => {
+    this.setState({btnClicked: true, commenterName: '', commentPara: ''})
+    this.setState(prevState => ({commentCount: prevState.commentCount + 1}))
+  }
+
   render() {
+    const {commenterName, commentPara, commentCount, btnClicked} = this.state
+
+    const renderAuth = () => {
+      if (btnClicked) {
+        return (
+          <CommentItem
+            initialContainerBackgroundClassNames={
+              initialContainerBackgroundClassNames
+            }
+          />
+        )
+      }
+      return null
+    }
+
     return (
       <div className="bg">
         <div>
@@ -32,8 +71,16 @@ class Comments extends Component {
                   type="text"
                   placeholder="Your Name"
                   className="nameTextInput"
+                  value={commenterName}
+                  onChange={this.inputName}
                 />
-                <textarea rows="6" cols="40" placeholder="Your Comment" />
+                <textarea
+                  rows="6"
+                  cols="40"
+                  placeholder="Your Comment"
+                  value={commentPara}
+                  onChange={this.textPara}
+                />
               </div>
             </div>
             <img
@@ -42,23 +89,22 @@ class Comments extends Component {
               className="img"
             />
           </div>
-          <button type="button" className="btnEl" data-testid="delete">
+          <button
+            type="button"
+            className="btnEl"
+            data-testid="delete"
+            onClick={this.buttonClicked}
+          >
             Add Comment
           </button>
           <hr className="horizontalLine" />
 
           <div className="numContainer">
-            <div className="countBox">0</div>
+            <div className="countBox">{commentCount}</div>
             <p>Comments</p>
           </div>
 
-          <ul className="ulContainer">
-            <CommentItem
-              initialContainerBackgroundClassNames={
-                initialContainerBackgroundClassNames
-              }
-            />
-          </ul>
+          <div className="ulContainer">{renderAuth()}</div>
         </div>
       </div>
     )
