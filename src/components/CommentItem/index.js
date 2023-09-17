@@ -2,38 +2,59 @@
 import './index.css'
 
 const CommentItem = props => {
-  const {initialContainerBackgroundClassNames} = props
-  const randomIndex = Math.floor(Math.random() * 7)
-  const styleBackground = initialContainerBackgroundClassNames[randomIndex]
+  const {eachObjectProp, deleteButtonProp, likeBtnProp} = props
+
+  const {id, name, para, color, date, isLikeActive} = eachObjectProp
+
+  const clickedOnDeleteButton = () => {
+    deleteButtonProp(id)
+  }
+
+  const likeBtnClicked = () => {
+    likeBtnProp(id)
+  }
+
+  const imgUrl = isLikeActive
+    ? 'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
+  const likeColor = isLikeActive ? 'likeTextStyle' : ''
+
   return (
     <li>
       <div className="upperBody">
-        <div className={`profileSymbol ${styleBackground}`}>R</div>
+        <div className={`profileSymbol ${color}`}>{name[0].toUpperCase()}</div>
         <div>
           <p className="nameOfPerson">
-            Richard Branson <span className="time">2 minutes ago</span>
+            {name} <span className="time">{date}</span>
           </p>
-          <p>
-            Thanks for being so typically supportive and such a good
-            friend,Elon. Great to be opening up space for all.
-          </p>
+          <p>{para}</p>
         </div>
       </div>
 
       <div className="lowerBody">
         <div className="likesContainer">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png"
-            alt="like"
-            className="likeImage"
-          />
-          <p>Like</p>
+          <img src={imgUrl} alt="like" className="likeImage" />
+          <button
+            type="button"
+            className={`likeButton ${likeColor}`}
+            onClick={likeBtnClicked}
+          >
+            Like
+          </button>
         </div>
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
-          alt="delete"
-          className="deleteBtn"
-        />
+
+        <button
+          type="button"
+          className="btnElement"
+          data-testid="delete"
+          onClick={clickedOnDeleteButton}
+        >
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
+            alt="delete"
+            className="deleteBtn"
+          />
+        </button>
       </div>
 
       <hr className="horizontalLine" />
